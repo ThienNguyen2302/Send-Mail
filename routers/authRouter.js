@@ -6,6 +6,8 @@ const Activated = require("../model/Activated");
 const bcrypt = require('bcrypt');
 const req = require("express/lib/request");
 const res = require("express/lib/response");
+const nodemailer = require("nodemailer")
+
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 
 passport.use(new GoogleStrategy({
@@ -34,6 +36,7 @@ function(request, accessToken, refreshToken, profile, done) {
         activateString: hash
       })
       activated.save()
+      
     }
   })
   .catch(e => {
